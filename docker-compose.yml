@@ -1,0 +1,14 @@
+services:
+  ai-gateway:
+    # 这里的 build: . 表示：去当前目录下找 Dockerfile 来构建镜像
+    build: .
+    container_name: ai-ops-gateway
+    restart: always
+    environment:
+      - ZHIPU_AI_KEY=${ZHIPU_AI_KEY}
+    ports:
+      - "5000:5000"
+    deploy:
+      resources:
+        limits:
+          memory: 150M  # 严格限制内存，保护你的 2核2G ECS
